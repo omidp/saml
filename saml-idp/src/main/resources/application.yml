@@ -1,0 +1,95 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: TRACE
+    org.springframework.security.saml: TRACE
+    org.opensaml.xmlsec: TRACE
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    saml2:
+      network:
+        read-timeout: 8000
+        connect-timeout: 4000
+      identity-provider:
+        basePath: "/"
+        entity-id: myidp.com
+        alias: boot-sample-idp
+        sign-metadata: true
+        sign-assertions: true
+        want-requests-signed: false
+        signing-algorithm: RSA_SHA256
+        digest-method: SHA256
+        single-logout-enabled: true
+        name-ids:
+          - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+          - urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+
+        keys:
+          active:
+            name: active-idp-key
+            private-key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              MIIEowIBAAKCAQEAyvG5BhABE6WgovqgYKBudehySrsK8QXfhNKR/qr74cNhfQmN
+              4CWM+AKnBaytoMi7/39AVcYzlcpS7pCiNhNKtImoVwzovYC/yR3l5maTe3Dc5yWr
+              eDV3vwb0JsvjrHPIkcH1DWcOFn8CrYp+c76QGoPlxiqZTP4vYFjX13Lo9AQluCCc
+              x1VemohdHhQBW2UDBecWDXKCaJW2QSozPaeeqRyWtaWpdMJeJscjhRpx0Wq8W+mA
+              I/07qT+8yCt8Orr9nBWnJbhxLUXiA6wzP8wtYpBBeVNi6lP+YPpe4IVYa8zU3ZO2
+              Q21Egrj/Dxedfrj7HCxP2rv3ey6WnZxkL5Lj3QIDAQABAoIBAHzUGAGhoHfsPZVh
+              4Xnt1GPT+VD8IavE+Apj1wc1Nr9UBUf6s3i2wDHgt8lmwFmQfwqVxAW+ZwZwr3gs
+              IIpwbVgFADWjLBk78zuKl1mTqI2aC1ZmNkU3ZhNq/IxMhxsREMKO8eMvi1vM/eGu
+              uT8KbOrSTGgK1cak5pE1tHXCKYXFWrFbZfSt7HAeX+VGbiBrBc3sPAFfVJ/Zfhx8
+              rb4ebafepEX9Zn9YCwTG7KAhU5k+c0a1r42tsZ+icb8glzFVdWoV7VFlouJ+KvRJ
+              rB8Y5kz41lb/WLANMo1kW6YQOkoIjL8sg42kmFSTTVOYmos/y5bP4Kzc7RTgVGZb
+              yzA9jQECgYEA7JLhE67H6MeI70U71gbL8S0krJn4o3TyrLYay+p6g9n5CK1puxpi
+              YRCXJ3/v06Z/ebSwpSo8wa5L2NSMnAwXVeNnYB0o3RK3QoTo49UzlSOHlmoVPjF6
+              2kd4eypODmHRP25glRtOqbL0kpcLE4AFv6e/+iyFHFH++DMZ1tCYC0ECgYEA25vn
+              FQGJ5zU+PJZlUNAUGVP+N1jfBG6T7eyqC9OPL2iebp/TWIy+otHuaWWJmXiOF+mZ
+              W5er12VYIfL7wGXVsx4I2PZd2fJz3XFO7rRGn+spCQzBWw4zic63do35DQVCR7+6
+              9vmRi3rn/oIvXW77vQQvhj0x28c0urQmjBnFvZ0CgYBKhwMNFlS4CpQi/KabCE0b
+              T2NsVJ01sVP6AOx0LQwnmXWQvEDAxtETTwyvTuiYvq0OBFRZ0/KL+YK/bkZVqqF3
+              V0prxwPmkUzWUdSkYbf8VdMTGZxTmXbgaP+VnYA1m6810mnuz0l6wHu36ol8vSoS
+              dKBQCdJtV4+BVWfgeppLgQKBgQCyiJEZe7G/3IInQWFGjJL6cFVIa6CK+taaY39u
+              s+RA931tk9N+tpU4yxBWcOynbuGdwRQi6TAToVk/6EkQhflwb6djsw5jY/8b9MTl
+              vHt6APTQXaVHwEjX7M0rvYnOMwtKRy3ZINVZHmdCelXFULepV6DHMjK5aL6OVmzM
+              Exu15QKBgELrrHFrY8pY2uJXlvU7AJ0xr+gKoxCCq/HfYCfhzlIIr9xp5RpIMbFd
+              jy9odaS8oTYS1EUpbszO20m++WxJ836rwD9/pbCMkS/2Mf2DGKxlJ5THFXEQwi0H
+              VrzEvrfGAwwVMpSXZos71ChORK6snimemA/TGleNKPczJbQ+eaOt
+              -----END RSA PRIVATE KEY-----
+            passphrase:
+            certificate: |
+              -----BEGIN CERTIFICATE-----
+              MIIDFjCCAf4CCQCl29Na0/Y1nTANBgkqhkiG9w0BAQsFADBNMQswCQYDVQQGEwJV
+              UzELMAkGA1UECAwCVVMxDzANBgNVBAoMBmplZGxhYjEPMA0GA1UECwwGamVkbGFi
+              MQ8wDQYDVQQDDAZqZWRsYWIwHhcNMjMwMzA5MDgyMTU3WhcNMzMwMzA2MDgyMTU3
+              WjBNMQswCQYDVQQGEwJVUzELMAkGA1UECAwCVVMxDzANBgNVBAoMBmplZGxhYjEP
+              MA0GA1UECwwGamVkbGFiMQ8wDQYDVQQDDAZqZWRsYWIwggEiMA0GCSqGSIb3DQEB
+              AQUAA4IBDwAwggEKAoIBAQDK8bkGEAETpaCi+qBgoG516HJKuwrxBd+E0pH+qvvh
+              w2F9CY3gJYz4AqcFrK2gyLv/f0BVxjOVylLukKI2E0q0iahXDOi9gL/JHeXmZpN7
+              cNznJat4NXe/BvQmy+Osc8iRwfUNZw4WfwKtin5zvpAag+XGKplM/i9gWNfXcuj0
+              BCW4IJzHVV6aiF0eFAFbZQMF5xYNcoJolbZBKjM9p56pHJa1pal0wl4mxyOFGnHR
+              arxb6YAj/TupP7zIK3w6uv2cFacluHEtReIDrDM/zC1ikEF5U2LqU/5g+l7ghVhr
+              zNTdk7ZDbUSCuP8PF51+uPscLE/au/d7LpadnGQvkuPdAgMBAAEwDQYJKoZIhvcN
+              AQELBQADggEBAMH/+33Sc/2cCmi6oZ+sn5yl3LPAtbW935Sg3FXBRu0Qv5eKWwp5
+              mZciNpdKyMBjXHDjv6AOkapeeJ/UejbE+IFiJbWuHF7qyfe9TCktkGy+b8wgBit5
+              CMpabQ1j4QLASdeyh+nx06VvTsqqtknDJ/dl0355OMs6cuC3KIaiR2O/CcAs5At5
+              b3C3W9G4zZ9pydwvtS1N8nQc5YZh87bqrD50THfUuEIik+/cRfwdC5NRPelpqlj1
+              HzXvjiDZaqRK02RS73emSufXS62RdgwEKuqH1o7ceoFXG7c8oUiADPbE/vUVjPOC
+              5BcqL6+zyL8X35+iVZ5o3Fjm9UcxhKQlqDA=
+              -----END CERTIFICATE-----
+        providers:
+          - alias: spring-security-saml-sp
+            metadata: http://localhost:8080/saml-sp/saml2/service-provider-metadata/myidp.com
+            linktext: Spring Security SAML SP
+#          - alias: samltestid
+#            metadata: https://samltest.id/saml/sp
+#            linktext: samltest id

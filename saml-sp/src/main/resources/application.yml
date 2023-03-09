@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /saml-sp
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: TRACE
+    org.springframework.security.saml: TRACE
+    org.opensaml.xmlsec: TRACE
+
+
+spring:
+  thymeleaf:
+    cache: false
